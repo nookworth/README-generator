@@ -14,8 +14,10 @@ const init = () => {
     .then((response) => {
       readmeName = response.projectName.toUpperCase();
 
-      fs.writeFile(`${readmeName}.md`, "", (error, data) =>
-        error ? console.error(error) : console.log(data)
+      fs.writeFile(
+        `${readmeName}.md`,
+        "# Table of Contents\n1. DESCRIPTION\n2. INSTALLATION\n3. USAGE\n4. CONTRIBUTING\n5. TESTS\n6. LICENSE\n7. QUESTIONS\n\n\n",
+        (error, data) => (error ? console.error(error) : console.log(data))
       );
 
       questions();
@@ -56,7 +58,7 @@ const questions = () => {
     .then((response) => {
       fs.appendFile(
         `${readmeName}.md`,
-        `DESCRIPTION\n${response.description}\n\n\nINSTALLATION\n${response.install}\n\n\nUSAGE\n${response.usage}\n\n\nCONTRIBUTING\n${response.contribution}\n\n\nTESTS\n${response.testing}\n\n\n`,
+        `## DESCRIPTION\n${response.description}\n\n\n## INSTALLATION\n${response.install}\n\n\n## USAGE\n${response.usage}\n\n\n## CONTRIBUTING\n${response.contribution}\n\n\n## TESTS\n${response.testing}\n\n\n`,
         (error, data) => (error ? console.error(error) : console.log(data))
       );
 
@@ -82,7 +84,7 @@ const license = () => {
     .then((response) => {
       fs.appendFile(
         `${readmeName}.md`,
-        `LICENSE\n${response.license}\n\n\n`,
+        `## LICENSE\n${response.license}\n\n\n`,
         (error, data) => (error ? console.error(error) : console.log(data))
       );
 
@@ -107,46 +109,9 @@ const contact = () => {
     .then((response) => {
       fs.appendFile(
         `${readmeName}.md`,
-        `QUESTIONS\nhttps://github.com/${response.github}\n${response.email} 
+        `## QUESTIONS\nhttps://github.com/${response.github}\n\n${response.email} 
           \n\n\n`,
         (error, data) => (error ? console.error(error) : console.log(data))
       );
     });
 };
-
-// const menu = () => {
-//   return inquirer
-//     .prompt([
-//       {
-//         type: "checkbox",
-//         message: "Select an option: ",
-//         name: "options",
-//         choices: ["Add an engineer", "Add an intern", "Finished"],
-//         validate: (answer) => {
-//           if (answer.length !== 1) {
-//             return "Please select exactly one option.";
-//           }
-//           return true;
-//         },
-//       },
-//     ])
-//     .then((response) => {
-//       if (response.options == "Add an engineer") {
-//         promptEngineer();
-//       }
-//     });
-// };
-
-// const promptEngineer = () => {
-//   return inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         message: "Type something in",
-//         name: "promptEngineer",
-//       },
-//     ])
-//     .then((response) => {
-//       menu();
-//     });
-// };
