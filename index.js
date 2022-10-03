@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+
 let readmeName;
 
 const init = () => {
@@ -16,7 +17,7 @@ const init = () => {
 
       fs.writeFile(
         `${readmeName}.md`,
-        "# Table of Contents\n1. DESCRIPTION\n2. INSTALLATION\n3. USAGE\n4. CONTRIBUTING\n5. TESTS\n6. LICENSE\n7. QUESTIONS\n\n\n",
+        "# Table of Contents\n[1. DESCRIPTION](#DESCRIPTION)\n[2. INSTALLATION](#INSTALLATION)\n[3. USAGE](#USAGE)\n[4. CONTRIBUTING](#CONTRIBUTING)\n[5. TESTS](#TESTS)\n[6. LICENSE](#LICENSE)\n[7. QUESTIONS](#QUESTIONS)\n\n\n",
         (error, data) => (error ? console.error(error) : console.log(data))
       );
 
@@ -109,9 +110,10 @@ const contact = () => {
     .then((response) => {
       fs.appendFile(
         `${readmeName}.md`,
-        `## QUESTIONS\nhttps://github.com/${response.github}\n\n${response.email} 
+        `## QUESTIONS\nhttps://github.com/${response.github}\n\n${response.email}
           \n\n\n`,
         (error, data) => (error ? console.error(error) : console.log(data))
       );
+
     });
 };
